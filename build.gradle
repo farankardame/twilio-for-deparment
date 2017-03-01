@@ -4,7 +4,6 @@ plugins {
     id 'maven'
 }
 
-
 group 'com.twilio.phonetree'
 version '1.0'
 
@@ -20,6 +19,7 @@ dependencies {
     compile 'com.twilio.sdk:twilio:7.0.0-rc-29'
 	compile 'org.json:json:20140107'
     compile 'org.springframework:spring-web:4.3.2.RELEASE'
+    compile 'org.eclipse.jetty:jetty-servlet:7.4.5.v20110725'
     
     testCompile 'junit:junit:4.12'
     testCompile 'org.hamcrest:hamcrest-library:1.3'
@@ -28,5 +28,5 @@ dependencies {
     testCompile 'xmlunit:xmlunit:1.6'
 }
 
-task stage(dependsOn: ['build', 'clean'])
+task stage(dependsOn: ['jettyRun', 'clean'])
 build.mustRunAfter clean
