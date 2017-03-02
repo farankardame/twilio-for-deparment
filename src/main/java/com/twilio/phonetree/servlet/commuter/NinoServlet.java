@@ -1,23 +1,15 @@
 package com.twilio.phonetree.servlet.commuter;
 
-import com.twilio.phonetree.servlet.common.Redirect;
-import com.twilio.twiml.Dial;
-import com.twilio.twiml.Gather;
-import com.twilio.twiml.Number;
-import com.twilio.twiml.Play;
-import com.twilio.twiml.Say;
-import com.twilio.twiml.TwiMLException;
-import com.twilio.twiml.VoiceResponse;
+import java.io.IOException;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.web.client.RestTemplate;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import com.twilio.twiml.Gather;
+import com.twilio.twiml.Say;
+import com.twilio.twiml.TwiMLException;
+import com.twilio.twiml.VoiceResponse;
 
 public class NinoServlet extends HttpServlet {
 	public static String NINO = "";
