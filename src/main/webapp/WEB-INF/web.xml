@@ -12,10 +12,6 @@
         <servlet-class>com.twilio.phonetree.servlet.ivr.WelcomeServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>menu-show</servlet-name>
-        <servlet-class>com.twilio.phonetree.servlet.menu.ShowServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>check-nino</servlet-name>
         <servlet-class>com.twilio.phonetree.servlet.commuter.NinoServlet</servlet-class>
     </servlet>
@@ -27,10 +23,6 @@
     <servlet-mapping>
         <servlet-name>ivr-welcome</servlet-name>
         <url-pattern>/ivr/welcome</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>menu-show</servlet-name>
-        <url-pattern>/menu/show</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>check-nino</servlet-name>

@@ -12,21 +12,19 @@ import com.twilio.twiml.TwiMLException;
 import com.twilio.twiml.VoiceResponse;
 
 public class WelcomeServlet extends HttpServlet {
-
+	public static String SYSTEM_NAME = "JSA"; 
     @Override
     protected void doPost(HttpServletRequest servletRequest, HttpServletResponse servletResponse)
             throws IOException {
     	
         VoiceResponse response = new VoiceResponse.Builder()
-        		.say(new Say.Builder("Welcome to the Department for Work and Pensions" 
-        				+ "Press 1 to know your next JSA Payment or " 
-        				+ "Press 2 to know your address in CIS.")
+        		.say(new Say.Builder("Welcome to the Ministry of Magic. Before we can continue we need to know your National Insurance number, as such  please can you key in the numbers from your national insurance number, for example if your national insurance number is AB123456C please key in 123456.")
         				.voice(Say.Voice.ALICE)
                         .language(Say.Language.EN_GB)
         				.build())                
         		.gather(new Gather.Builder()
-                        .action("/menu/show")
-                        .numDigits(1)
+        				.action("/commuter/nino")
+                        .numDigits(6)
                         .build()).build();
 
         servletResponse.setContentType("text/xml");

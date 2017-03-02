@@ -1,7 +1,7 @@
 package com.twilio.phonetree.servlet.commuter;
 
 import com.twilio.phonetree.servlet.common.Redirect;
-import com.twilio.phonetree.servlet.menu.ShowServlet;
+import com.twilio.phonetree.servlet.ivr.WelcomeServlet;
 import com.twilio.twiml.Dial;
 import com.twilio.twiml.Hangup;
 import com.twilio.twiml.Number;
@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class DobServlet extends HttpServlet {
 	public static String DOB = "";
-	public static String CIS_API_BASE ="https://mchannelplatform-prod.apigee.net/cis-details/cis?";
+	/*public static String CIS_API_BASE ="https://mchannelplatform-prod.apigee.net/cis-details/cis?";*/
 	public static String JSA_API_BASE ="https://mchannelplatform-prod.apigee.net/cis/customer?";
 
 	
@@ -41,7 +41,7 @@ public class DobServlet extends HttpServlet {
         String new_dob = "";
         System.out.println("selectedOption"+selectedOption);
         
-		if (ShowServlet.SYSTEM_NAME == "JSA"){
+		if (WelcomeServlet.SYSTEM_NAME == "JSA"){
 			 System.out.println("doPost"+"DobServlet"+"JSA");
              test_url = JSA_API_BASE +  "nino=" + NinoServlet.NINO + "&apikey=im2IurZLr5YT2dgsmKPXGJcnMsn9ado8";
            
@@ -57,12 +57,12 @@ public class DobServlet extends HttpServlet {
              char[] charDob = temp_dob.toCharArray();
              new_dob = temp_dob.valueOf(charDob, 6, 2)+temp_dob.valueOf(charDob, 4, 2)+temp_dob.valueOf(charDob, 0, 4);
              
-             speech_text = "Hi "+cust.getString("firstName") +" "+ cust.getString("lastName")+ " your next Payment is "+ cust.getString("amount") +" and due on "+ cust.getString("paymentDate").replaceAll("Z", "");
+             speech_text = "We can see that you are currently receiving Job Seekers Allowance, your next payment amount will be  "+ cust.getString("amount") +" and will be paid to your account on  "+ cust.getString("paymentDate").replaceAll("Z", "");
             System.out.println("dob"+new_dob);
             System.out.println(speech_text);
             } 
         
-        if (ShowServlet.SYSTEM_NAME == "CIS"){
+/*        if (WelcomeServlet.SYSTEM_NAME == "CIS"){
        	    System.out.println("doPost"+"DobServlet"+"CIS");
             test_url = CIS_API_BASE +  "nino=" + NinoServlet.NINO + "&apikey=im2IurZLr5YT2dgsmKPXGJcnMsn9ado8";
             apiResponse = restTemplate.getForObject(test_url, String.class);
@@ -76,7 +76,7 @@ public class DobServlet extends HttpServlet {
             new_dob =  temp_dob.valueOf(charDob, 6, 2)+temp_dob.valueOf(charDob, 4, 2)+temp_dob.valueOf(charDob, 0, 4);
             speech_text = "Hi "+cust.getString("firstName") +" "+ cust.getString("lastName")+ " your address is "+ cust.getString("addressline1") +" "+ cust.getString("addressline2")+" "+cust.getString("addressline3")+" " +cust.getString("city")+" "+cust.getString("postcode")+" "+cust.getString("country");
             System.out.println(speech_text);
-        }
+        }*/
         
         System.out.println("dob"+new_dob);
         System.out.println("selectedOption"+selectedOption);
@@ -86,7 +86,7 @@ public class DobServlet extends HttpServlet {
         }
         else{
         	System.out.println("comparison false");
-        	speech_text = "Sorry I am not sure who you are please try again";}
+        	speech_text = "Sorry we can’t seem to find you in our systems right now please hang up and try again";}
         
         VoiceResponse response = new VoiceResponse.Builder()
                 .say(new Say.Builder(
@@ -95,7 +95,7 @@ public class DobServlet extends HttpServlet {
                         .language(Say.Language.EN_GB)
                         .build())
                 .say(new Say.Builder(
-                        "Thank you for calling the Department for Work and Pensions")
+                        "If you have any further queries and wish to speak to an agent please press 1, otherwise please hang up")
                         .build())
                 .hangup(new Hangup())
                 .build();
