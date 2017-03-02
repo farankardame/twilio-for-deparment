@@ -80,7 +80,11 @@ public class DobServlet extends HttpServlet {
              JSONObject cust = resp.getJSONObject("customer");
              System.out.println("cust"+cust.toString());
              System.out.println("cust-dob"+cust.getString("dob"));
-             new_dob = cust.getString("dob").replaceAll("-", "").replace("Z", "");
+             
+             String temp_dob = cust.getString("dob").replaceAll("-", "").replace("Z", "");
+             char[] charDob = temp_dob.toCharArray();
+             new_dob = temp_dob.valueOf(charDob, 6, 2)+temp_dob.valueOf(charDob, 4, 2)+temp_dob.valueOf(charDob, 0, 4);
+             
              speech_text = "Hi "+cust.getString("firstName") +" "+ cust.getString("lastName")+ " your next Payment is "+ cust.getString("amount") +" and due on "+ cust.getString("paymentDate").replaceAll("Z", "");
             System.out.println("dob"+new_dob);
             System.out.println(speech_text);
@@ -95,7 +99,9 @@ public class DobServlet extends HttpServlet {
             JSONObject cust = resp.getJSONObject("cisdetails");
             System.out.println("cust"+cust.toString());
             System.out.println("cust-dob"+cust.getString("dob"));
-            new_dob = cust.getString("dob").replaceAll("-", "").replace("Z", "");
+            String temp_dob = cust.getString("dob").replaceAll("-", "").replace("Z", "");
+            char[] charDob = temp_dob.toCharArray();
+            new_dob =  temp_dob.valueOf(charDob, 6, 2)+temp_dob.valueOf(charDob, 4, 2)+temp_dob.valueOf(charDob, 0, 4);
             speech_text = "Hi "+cust.getString("firstName") +" "+ cust.getString("lastName")+ " your address is "+ cust.getString("addressline1") +" "+ cust.getString("addressline2")+" "+cust.getString("addressline3")+" " +cust.getString("city")+" "+cust.getString("postcode")+" "+cust.getString("country");
             System.out.println(speech_text);
         }
