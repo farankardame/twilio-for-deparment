@@ -24,35 +24,7 @@ public class DobServlet extends HttpServlet {
 	public static String DOB = "";
 	public static String CIS_API_BASE ="https://mchannelplatform-prod.apigee.net/cis-details/cis?";
 	public static String JSA_API_BASE ="https://mchannelplatform-prod.apigee.net/cis/customer?";
-   /* @Override
-    protected void doPost(HttpServletRequest servletRequest, HttpServletResponse servletResponse)
-            throws IOException {
 
-        String selectedOption = servletRequest.getParameter("Digits");
-        Map<String, String> optionPhones = new HashMap<>();
-        optionPhones.put("2", "+12024173378");
-        optionPhones.put("3", "+12027336386");
-        optionPhones.put("4", "+12027336637");
-
-        VoiceResponse twiMLResponse = optionPhones.containsKey(selectedOption)
-                ? dial(optionPhones.get(selectedOption))
-                : Redirect.toMainMenu();
-
-        servletResponse.setContentType("text/xml");
-        try {
-            servletResponse.getWriter().write(twiMLResponse.toXml());
-        } catch (TwiMLException e) {
-            throw new RuntimeException(e);
-        }
-    }*/
-
-	
-    /*private VoiceResponse dial(String phoneNumber) {
-        Number number = new Number.Builder(phoneNumber).build();
-        return new VoiceResponse.Builder()
-                .dial(new Dial.Builder().number(number).build())
-                .build();
-    }*/
 	
 	@Override
     protected void doPost(HttpServletRequest servletRequest, HttpServletResponse servletResponse)
