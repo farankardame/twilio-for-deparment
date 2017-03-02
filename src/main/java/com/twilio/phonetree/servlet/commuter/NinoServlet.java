@@ -27,7 +27,7 @@ public class NinoServlet extends HttpServlet {
         
         VoiceResponse response = new VoiceResponse.Builder()
                 .say(new Say.Builder(
-                		"Thanks, please can you now key in your data of birth, for example if your birthday is 15th October 1987 please key in 11101987")
+                		"Thanks, please can you now key in your date of birth, for example if your birthday is 15th October 1987 please key in 15101987")
                         .voice(Say.Voice.ALICE)
                         .language(Say.Language.EN_GB)
                         .build())
